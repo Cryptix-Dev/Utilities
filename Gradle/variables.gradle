@@ -1,0 +1,10 @@
+// Project Name for eclipse project explorer
+ext.projectName = "My App"
+
+// Android Settings
+
+// App sub-project variables
+ext.appPackage = "com.cryptix.myapp"
+ext.appMinSDK = 8
+ext.appTargetSDK = 21
+ext.appBuildTools = "21.1.2"
