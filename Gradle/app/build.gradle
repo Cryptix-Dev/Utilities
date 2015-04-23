@@ -7,10 +7,7 @@ apply plugin: 'eclipse'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-}
-
-sdkManager {
-    emulatorVersion "android-${appTargetSDK}"
+    compile 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
 }
 
 android {
