@@ -168,7 +168,7 @@ task copyEclipseClasspath << {
     }
 }
 
-task cleanEclipseGradle(type: Delete) {
+task cleanEclipseGradle << {
 	def binsDir = new File("${projectDir}/bin")
 	def depsDir = new File("${projectDir}/deps")
 	def genDir  = new File("${projectDir}/gen")
