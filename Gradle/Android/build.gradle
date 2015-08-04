@@ -20,18 +20,18 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.0'
+        classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }
 
 allprojects {
     repositories {
-		def androidHome = System.getenv("ANDROID_HOME")
+        def androidHome = System.getenv("ANDROID_HOME")
         mavenCentral()
-		maven {
-			url "$androidHome/extras/android/m2repository/"
-		}
-		
+        maven {
+            url "${androidHome}/extras/android/m2repository/"
+        }
+        
     }
 }
 
