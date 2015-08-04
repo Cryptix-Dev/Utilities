@@ -1,0 +1,22 @@
+apply plugin: 'eclipse'
+
+// TASKS:
+//      genSrcDirs (runs after eclipse) - generates all java and resources folders
+//      cleanEclipseGradle (runs after cleanEclipse) - deletes bins, and .settings
+//      afterEclipseImport - fixes genSrcDirs bug with Gradle IDE plugin
+
+task genSrcDirs << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+tasks.eclipse.finalizedBy(genSrcDirs)
+
+task cleanEclipseGradle << {
+    def binsDir = new File("${projectDir}/bin")
+    def settingsDir = new File("${projectDir}/.settings")
+    binsDir.deleteDir()
+    settingsDir.deleteDir()
+}
+cleanEclipse.finalizedBy(cleanEclipseGradle)
+
+task afterEclipseImport(dependsOn: ['eclipse'])
