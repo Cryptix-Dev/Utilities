@@ -3,6 +3,8 @@ apply plugin: 'eclipse'
 
 // project Variables
 def Package = "io.cryptix.package"
+def AndroidVersionCode = 1
+def AndroidVersionName = "1.0"
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -21,8 +23,8 @@ android {
         applicationId Package
         minSdkVersion MinSDK
         targetSdkVersion TargetSDK
-        versionCode getVersionCode()
-        versionName getVersionName()
+        versionCode AndroidVersionCode
+        versionName AndroidVersionName
     }
     
     
