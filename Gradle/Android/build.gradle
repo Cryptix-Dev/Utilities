@@ -1,7 +1,18 @@
-apply from: 'variables.gradle'
-// Wrapper Updater
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
+apply plugin: 'eclipse'
+
+// List of JavaVersions: https://goo.gl/jFC1xv
+ext.javaSourceCompatibility = JavaVersion.VERSION_1_7
+ext.javaTargetCompatibility = JavaVersion.VERSION_1_7
+
+// Min, Target, and BuildTools for all subprojects
+ext.MinSDK  = 9
+ext.TargetSDK = 22
+ext.BuildTools = "22.0.1"
+
+// ProjectName to use in Eclipse
+ext.projectName = "Cube Portal"
+eclipse.project {
+    name = projectName
 }
 
 buildscript {
@@ -24,7 +35,7 @@ allprojects {
     }
 }
 
-apply plugin: 'eclipse'
-eclipse.project {
-	name = projectName
+// Wrapper Updater
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
 }
