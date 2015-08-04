@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 
-// project Variables
+// Insert helper files here
+
+// TASKS:
+//      generateBaseDirectories - Generates all java, res, and assets folders
+//      generateAllDirectories - Generates all source fodlers (java, res, assets, rs, resources, aidl)
+
+// Project Variables
 def Package = "io.cryptix.package"
 def AndroidVersionCode = 1
 def AndroidVersionName = "1.0"
@@ -45,7 +51,6 @@ android {
         targetCompatibility javaTargetCompatibility
     }
     
-	// TODO: Create more buildTypes
     buildTypes {
         release {
             minifyEnabled false
