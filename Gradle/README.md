@@ -62,6 +62,7 @@ The build.gradle file is the core of any gradle project. The build.gradle define
 For plugin specific information visit their templates and gradle documentation.
 
 **Adding Plugins**
+
 To add a plugin, add the following to the top of your build.gradle:
 ```
 apply plugin: 'pluginName'
@@ -69,6 +70,7 @@ apply plugin: 'pluginName'
 where pluginName is the name of the plugin (ex: `'java'`).
 
 **Dependencies**
+
 Since gradle is built off of maven, dependencies are simply defined in the build.gradle and will automatically be downloaded and used on build.
 To add dependencies add the following to your build.gradle:
 ```
@@ -83,6 +85,7 @@ You can replace `compile` with one of the following to apply them to different a
 * `testRuntime` - adds dependencies at runtime of the test source. By default compile, runtime, and testCompile dependencies will also be added.
 
 **Repositories**
+
 Repositories are how you define where the build.gradle can get the dependencies. You can add locations from central repositories like `mavenCentral()` or `jCenter()`, or from local file systems or HTTP.
 TO add repositories add the following to your build.gradle:
 ```
@@ -147,10 +150,12 @@ It is highly recommended to store your helper.gradle files in the folder `gradle
 Refer to the [Project Structures](#project-structures) section for helper location reference.
 
 To implement a helper.gradle file into your projects build.gradle simply do the following:
-1. copy your desired helper.gradle file into your projects gradle folder (ex: copy `version-helper.gradle` into `gradle/`)
-2. Apply the helper.gradle file to your projects build.gradle.
-    * `apply from: 'gradle/helper.gradle'` for build.gradle in project root
-    * `apply from: '../gradle/helper.gradle'` for build.gradle in sub-projects
+
+Copy your desired helper.gradle file into your projects gradle folder (ex: copy `version-helper.gradle` into `gradle/`)
+ 
+Apply the helper.gradle file to your projects build.gradle.
+- `apply from: 'gradle/helper.gradle'` for build.gradle in project root
+- `apply from: '../gradle/helper.gradle'` for build.gradle in sub-projects
 
 After applying your helper.gradle you will be able to use its functions and tasks.
 For example, applying `version-helper.gradle` gives you access to the `gitVersion()` function.
@@ -179,7 +184,7 @@ If you have gradle installed, gradle will run your `gradle` with the wrapper ver
 
 Setting up the wrapper is a simple two step process.
 
-1. In your project's root build.gradle make sure you have the following task:
+In your project's root build.gradle make sure you have the following task:
 ```
 task wrapper(type: Wrapper) {
     gradleVersion = 'gradleVersion'
@@ -187,7 +192,7 @@ task wrapper(type: Wrapper) {
 ```
 where `'gradleVersion'` is the version of gradle you want the wrapper to be (ex: `'2.5'`).
 
-2. run `./gradle wrapper` to generate the following files:
+Run `./gradle wrapper` to generate the following files:
 ```
 gradlew
 gradlew.bat
