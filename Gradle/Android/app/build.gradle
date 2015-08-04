@@ -43,7 +43,7 @@ android {
     }
     
     dexOptions {
-    	preDexLibraries = preDexEnabled && !isTravis
+        preDexLibraries = preDexEnabled && !isTravis
     }
     
     compileOptions {
