@@ -1,0 +1,42 @@
+apply plugin: 'java'
+
+// Insert helpers here
+
+// Project Variables
+def projectName = project.name
+def packageName = "io.cryptix.java"
+def mainClass = "Main"
+
+def specificationTitle = "Java Single Project Example"
+def specificationVersion = "1.0"
+def specificationVendor = "Cryptix, LLC"
+def implementationVersion = "1.0-release"
+
+// List of JavaVersions: https://goo.gl/jFC1xv
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+}
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes "Specification-Title": specificationTitle,
+                   "Specification-Version": specificationVersion,
+                   "Specification-Vendor": specificationVendor,
+                   "Implementation-Title": packageName,
+                   "Implementation-Version": implementationVersion,
+                   "Main-Class": "${packageName}.${mainClass}",
+                   "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+    }
+}
+
+// Wrapper Updater
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
