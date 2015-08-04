@@ -8,8 +8,12 @@ def AndroidVersionName = "1.0"
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    // Add Dependencies here.
     
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+    
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
 }
 
 def isTravis = "true".equals(System.getenv("TRAVIS"))
