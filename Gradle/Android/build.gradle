@@ -9,10 +9,8 @@ ext.MinSDK  = 9
 ext.TargetSDK = 22
 ext.BuildTools = "22.0.1"
 
-// ProjectName to use in Eclipse
-ext.projectName = "Cube Portal"
 eclipse.project {
-    name = projectName
+    name = ${project.name}
 }
 
 buildscript {
@@ -30,8 +28,7 @@ allprojects {
         mavenCentral()
         maven {
             url "${androidHome}/extras/android/m2repository/"
-        }
-        
+        }  
     }
 }
 

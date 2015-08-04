@@ -73,7 +73,7 @@ eclipse.jdt {
 }
 
 eclipse.project {
-    name = "${projectName}-${project.name}"
+    name = ${project.name}
     natures 'com.android.ide.eclipse.adt.AndroidNature'
     buildCommand 'com.android.ide.eclipse.adt.ResourceManagerBuilder'
     buildCommand 'com.android.ide.eclipse.adt.PreCompilerBuilder'
