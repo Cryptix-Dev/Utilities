@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+// Insert helper files here
+
+// TASKS:
+//      generateBaseDirectories - Generates all java, res, and assets folders
+//      generateAllDirectories - Generates all source fodlers (java, res, assets, rs, resources, aidl)
+
+// List of JavaVersions: https://goo.gl/jFC1xv
+ext.javaSourceCompatibility = JavaVersion.VERSION_1_7
+ext.javaTargetCompatibility = JavaVersion.VERSION_1_7
+
+// Project Variables
+def Package = "io.cryptix.package"
+ext.MinSDK  = 9
+ext.TargetSDK = 22
+ext.BuildTools = "22.0.1"
+def AndroidVersionCode = 1
+def AndroidVersionName = "1.0"
+
+def isTravis = "true".equals(System.getenv("TRAVIS"))
+def preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
+
+repositories {
+    def androidHome = System.getenv("ANDROID_HOME")
+    mavenCentral()
+    maven {
+        url "${androidHome}/extras/android/m2repository/"
+    }  
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    
+    testCompile 'junit:junit:4.12'
+    
+    androidTestCompile 'junit:junit:4.12'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+    }
+}
+
+android {
+    compileSdkVersion TargetSDK
+    buildToolsVersion BuildTools
+
+    defaultConfig {
+        applicationId Package
+        minSdkVersion MinSDK
+        targetSdkVersion TargetSDK
+        versionCode AndroidVersionCode
+        versionName AndroidVersionName
+    }
+    
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+    
+    dexOptions {
+        preDexLibraries = preDexEnabled && !isTravis
+    }
+    
+    compileOptions {
+        sourceCompatibility javaSourceCompatibility
+        targetCompatibility javaTargetCompatibility
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+task generateBaseDirectories << {
+    android.sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.assets.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.res.srcDirs*.each { it.mkdirs() }
+    new File("${projectDir}/libs").mkdirs()
+}
+
+task generateAllDirectories << {
+    android.sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.renderscript.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.aidl.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.res.srcDirs*.each { it.mkdirs() }
+    android.sourceSets*.assets.srcDirs*.each { it.mkdirs() }
+    new File("${projectDir}/libs").mkdirs()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
