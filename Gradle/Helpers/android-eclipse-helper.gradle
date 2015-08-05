@@ -172,6 +172,7 @@ task genSrcDirs << {
     android.sourceSets*.res.srcDirs*.each { it.mkdirs() }
     android.sourceSets*.assets.srcDirs*.each { it.mkdirs() }
     new File("${projectDir}/gen").mkdirs()
+    new File("${projectDir}/libs").mkdirs()
 }
 
 task genBaseSrcDirs << {
@@ -179,6 +180,7 @@ task genBaseSrcDirs << {
     android.sourceSets*.assets.srcDirs*.each { it.mkdirs() }
     android.sourceSets*.res.srcDirs*.each { it.mkdirs() }
     new File("${projectDir}/gen").mkdirs()
+    new File("${projectDir}/libs").mkdirs()
 }
 tasks.eclipse.finalizedBy(genBaseSrcDirs)
 
