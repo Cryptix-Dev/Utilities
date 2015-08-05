@@ -1,0 +1,14 @@
+apply plugin: 'idea'
+
+task convert {
+    doLast {
+        file("${projectDir}/app/src").renameTo(file("${projectDir}/src"))
+        file("${projectDir}/app/proguard-rules.pro").renameTo(file("${projectDir}/proguard-rules.pro"))
+        file("${projectDir}/app/libs").renameTo(file("${projectDir}/libs"))
+        file("${projectDir}/src/main/AndroidManifest.xml").renameTo(file("${projectDir}/AndroidManifest.xml"))
+        new File("${projectDir}/app").deleteDir()
+        new File("${projectDir}/.idea").deleteDir()
+    }
+}
+convert.dependsOn(tasks.cleanIdea)
+convert.mustRunAfter tasks.cleanIdea
